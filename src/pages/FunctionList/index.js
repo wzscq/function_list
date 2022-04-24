@@ -31,7 +31,7 @@ export default function FunctionList(props){
 
     const updateFunctionList=useCallback(()=>{
         if(origin&&item){
-            opUpdateFrame.params={frameType:item.frameType,frameID:item.key,origin:origin};
+            opUpdateFrame.params={frameType:item.frameType,frameID:item.params.key,origin:origin};
             opGetFunctonList.successOperation=opUpdateFrame;
             const message={
                 type:FRAME_MESSAGE_TYPE.DO_OPERATION,
