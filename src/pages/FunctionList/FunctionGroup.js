@@ -14,6 +14,7 @@ export default function FunctionGroup({funcList,sendMessageToParent}){
                 }
             </Col>
         ));
+        
         return funcItems.length>0?(
             <>
             <Panel header={item.name} key={item.id}>
@@ -27,7 +28,7 @@ export default function FunctionGroup({funcList,sendMessageToParent}){
     });
 
     return (
-        <Collapse ghost>
+        <Collapse accordion={false} ghost>
             {groupItems}
         </Collapse>
     );
