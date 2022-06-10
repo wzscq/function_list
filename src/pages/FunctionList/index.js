@@ -21,7 +21,7 @@ const opGetFunctonList={
         method:"post"
     },
     input:{},
-    description:"获取功能列表"
+    description:{key:'page.function.getFunctions',default:'获取功能列表'}
 }
 
 export default function FunctionList(props){

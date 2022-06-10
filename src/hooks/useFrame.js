@@ -2,6 +2,7 @@ import { useEffect,useCallback } from "react";
 import {useSelector,useDispatch} from 'react-redux';
 import {setParam} from '../redux/frameSlice';
 import { setFunction } from "../redux/functionSlice";
+import { setLocale } from "../redux/i18nSlice";
 import {FRAME_MESSAGE_TYPE} from '../utils/constant';
 
 export default function useFrame(){
@@ -21,9 +22,15 @@ export default function useFrame(){
         console.log("receiveMessageFromMainFrame:",event);
         if(event.data.type===FRAME_MESSAGE_TYPE.INIT){
             dispatch(setParam({origin:event.origin,item:event.data.data}));
+            if(event.data.i18n){
+                dispatch(setLocale(event.data.i18n));
+            }
         } else if (event.data.type===FRAME_MESSAGE_TYPE.UPDATE_DATA){
             console.log("UPDATE_DATA",event.data)
             dispatch(setFunction(event.data.data));
+        } else if (event.data.type===FRAME_MESSAGE_TYPE.UPDATE_LOCALE){
+            console.log("UPDATE_LOCALE",event.data)
+            dispatch(setLocale(event.data.i18n));
         }
     },[dispatch]);
         

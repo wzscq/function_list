@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card } from 'antd';
+import { Card,Button } from 'antd';
 import * as IconList from '@ant-design/icons';
 
+import I18nLabel from './I18nLabel';
 import {FRAME_MESSAGE_TYPE} from '../../utils/constant';
 
 export default function FunctionItem({item,sendMessageToParent}){
@@ -20,17 +21,18 @@ export default function FunctionItem({item,sendMessageToParent}){
     const titleComponent=(
         <>
             <IconItem/>
-            <span>{item.name}</span>
+            <I18nLabel label={item.name}/>
         </>
         );
 
+    const openLabel=item.openLabel?item.openLabel:{key:'page.function.defaultOpenLabel',default:'打开'};
     const extraComponent=(
-        <a href="#" onClick={doOperation}>打开</a>
+        <Button type="link" onClick={doOperation}><I18nLabel label={openLabel}/></Button>
     )
 
     return (
         <Card size="small" title={titleComponent} extra={extraComponent} style={{minWidth:190}}>
-            {item.description}
+            <I18nLabel label={item.description}/>
         </Card>
     );
 }
